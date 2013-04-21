@@ -11,7 +11,7 @@ class MacvimKaoriya < Formula
  
   GETTEXT = "#{HOMEBREW_PREFIX}/Cellar/gettext-mk/0.18.1.1"
  
-  def ptches
+  def patches
     patch_level = version.to_s.split('.').last.to_i
     {'p0' => (807..patch_level).map { |i| 'ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.%03d' % i }}
   end
