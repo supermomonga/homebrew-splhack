@@ -13,7 +13,7 @@ class MacvimKaoriya < Formula
  
   def patches
     # version will be '--HEAD'
-    version = '7.3.840'
+    # version = '7.3.840'
     patch_level = version.to_s.split('.').last.to_i
     {'p0' => (806..patch_level).map { |i| 'ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.%03d' % i }}
   end
@@ -41,7 +41,8 @@ class MacvimKaoriya < Formula
                           '--enable-python3interp=dynamic',
                           '--enable-rubyinterp=dynamic',
                           '--enable-ruby19interp=dynamic',
-                          '--enable-luainterp=dynamic'
+                          '--enable-luainterp=yes',
+                          "--with-lua-prefix=#{HOMEBREW_PREFIX}"
  
     `rm src/po/ja.sjis.po`
     `touch src/po/ja.sjis.po`
@@ -54,7 +55,7 @@ class MacvimKaoriya < Formula
     end
  
     inreplace 'src/auto/config.mk' do |s|
-      s.gsub! "-L#{HOMEBREW_PREFIX}/Cellar/readline/6.2.2/lib", ''
+      s.gsub! "-L #{HOMEBREW_PREFIX}/Cellar/readline/6.2.2/lib", ''
     end
  
     Dir.chdir('src/po') {system 'make'}
