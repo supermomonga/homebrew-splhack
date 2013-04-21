@@ -13,7 +13,7 @@ class MacvimKaoriya < Formula
  
   def patches
     # version will be '--HEAD'
-    version = '7.3.905'
+    version = '7.3.840'
     patch_level = version.to_s.split('.').last.to_i
     {'p0' => (806..patch_level).map { |i| 'ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.%03d' % i }}
   end
