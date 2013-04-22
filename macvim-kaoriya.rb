@@ -3,21 +3,12 @@ require 'formula'
 class MacvimKaoriya < Formula
   homepage 'http://code.google.com/p/macvim-kaoriya/'
   head 'https://github.com/splhack/macvim.git'
-  version '7.3.905'
  
   depends_on 'cmigemo-mk'
   depends_on 'ctags-objc-ja'
   depends_on 'gettext-mk'
  
   GETTEXT = "#{HOMEBREW_PREFIX}/Cellar/gettext-mk/0.18.1.1"
- 
-  def patches
-    # version will be '--HEAD'
-    # version = '7.3.840'
-    patch_level = version.to_s.split('.').last.to_i
-    {'p0' => (806..patch_level).map { |i| 'ftp://ftp.vim.org/pub/vim/patches/7.3/7.3.%03d' % i }}
-  end
- 
  
   def install
     ENV.remove_macosxsdk
